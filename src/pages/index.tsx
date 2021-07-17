@@ -1,23 +1,36 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { Button, Form, InputGroup } from 'react-bootstrap'
+
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+const SignupFunc = () => {
+  // history.push("/signup")
+}
 const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
+    <div className="LoginMain" >
+      <Form style={{width:"430px"}} >
+        {/* <img src={} className="compLogo" alt="Logo" /> */}
+        <Form.Group >
+          <Form.Label className="labels" htmlFor="email">Email</Form.Label>
+          <Form.Control id="email" type="email" placeholder="Enter email" autoFocus />
+        </Form.Group>
+
+        <Form.Group >
+          <Form.Label className="labels">Password</Form.Label>
+          <InputGroup.Prepend>
+            <Form.Control id="password" type="password" placeholder="Password" />
+          </InputGroup.Prepend>
+        </Form.Group>
+        <br/>
+        <Button variant="primary" type="submit" >  Login</Button>
+        <Button variant="link" onClick={SignupFunc}>Don't have an account ?</Button>
+      </Form>
+    </div>
   </Layout>
 )
 
