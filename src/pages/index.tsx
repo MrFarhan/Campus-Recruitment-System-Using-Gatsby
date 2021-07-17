@@ -6,14 +6,11 @@ import { Button, Form, InputGroup } from 'react-bootstrap'
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const SignupFunc = () => {
-  // history.push("/signup")
-}
 const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
     <div className="LoginMain" >
-      <Form style={{width:"430px"}} >
+      <Form style={{ width: "430px" }} >
         {/* <img src={} className="compLogo" alt="Logo" /> */}
         <Form.Group >
           <Form.Label className="labels" htmlFor="email">Email</Form.Label>
@@ -26,9 +23,9 @@ const IndexPage = () => (
             <Form.Control id="password" type="password" placeholder="Password" />
           </InputGroup.Prepend>
         </Form.Group>
-        <br/>
+        <br />
         <Button variant="primary" type="submit" >  Login</Button>
-        <Button variant="link" onClick={SignupFunc}>Don't have an account ?</Button>
+        <Button variant="link">  <Link to="/Signup">Don't have an account ?</Link></Button>
       </Form>
     </div>
   </Layout>
