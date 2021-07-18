@@ -1,42 +1,39 @@
-import * as React from "react"
-import PropTypes from "prop-types"
+import React from "react"
+import { Button, Nav, Navbar } from 'react-bootstrap';
 import { Link } from "gatsby"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+interface Menu {
+  item: String,
+  index: Number,
+  route:string,
+  Text:String
+}
+interface Props {
+  siteTitle: String,
+  data: Menu[],
+}
+
+const Header = ({ siteTitle, data }: Props) => (
+  < header >
+    <div >
+      <Navbar bg="light" expand="lg" fixed="top"  >
+        <Navbar.Brand style={{ color: "blue" }}><Link to="/">{siteTitle}</Link></Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="navControlerParent" />
+        <Navbar.Collapse id="basic-navbar-nav" className="navControlerChild">
+          <Nav className="mr-auto">
+            {data?.map((item, index) => {
+              return <Link key={index} to={item["route"]} >
+                &nbsp; {String(window.location.pathname) == String(item["route"]) ? <span style={{ color: "red", textDecoration: "none !important" }}>{item["Text"]}</span> : <span style={{ color: "black", textDecoration: "none" }}> {item["Text"]} </span>} &nbsp;
+              </Link>
+            })}
+          </Nav>
+          &nbsp;<Button variant="outline-dark" style={{ marginLeft: "auto", marginRight: "1em" }}>
+            {/* <CgLogOut /> */}
+            Logout</Button>
+        </Navbar.Collapse>
+      </Navbar>
     </div>
-  </header>
+  </header >
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header
